@@ -12,16 +12,10 @@
 <body>
     <div class="container">
         <div class="row">
-            <h2> Paint by number generator </h2>
-            <span>Paste from clipboard (ctrl+v) to change the image (or browse for a file <input id="file" type="file"
-                    accept="image/x-png,image/gif,image/jpeg"></input>). Large images are very slow to process
-                though.</span>
+            <h2> Paint By Numbers </h2>
+            <span>Browse For a File <input id="file" type="file"
+                    accept="image/x-png,image/gif,image/jpeg"></input>). </span>
             <br />
-            <span>Example images:
-                <a id="lnkTrivial" href="#">trivial</a> -
-                <a id="lnkSmall" href="#">small</a> -
-                <a id="lnkMedium" href="#">medium</a>
-            </span>
         </div>
         <div class="row">
             <div class="col s12">
@@ -30,7 +24,7 @@
                         <a href="#input-pane">Input</a>
                     </li>
                     <li class="tab col s2">
-                        <a href="#options-pane">Options</a>
+                        <!-- <a href="#options-pane">Options</a> -->
                     </li>
                 </ul>
             </div>
@@ -330,7 +324,7 @@
                     </div>
                     <div class="col s2">
                         <label>
-                            <input id="chkFillFacets" type="checkbox" checked="checked" />
+                            <input id="chkFillFacets" type="checkbox" checked=false />
                             <span>Fill facets</span>
                         </label>
                     </div>
