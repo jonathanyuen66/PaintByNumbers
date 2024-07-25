@@ -3115,8 +3115,8 @@ define("gui", ["require", "exports", "common", "guiprocessmanager", "settings"],
     //             }
     //         }
     //     }
-    //     return settings;
-    // }
+        return settings;
+    }
     exports.parseSettings = parseSettings;
     function process() {
         return __awaiter(this, void 0, void 0, function* () {
