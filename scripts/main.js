@@ -3045,63 +3045,78 @@ define("gui", ["require", "exports", "common", "guiprocessmanager", "settings"],
     exports.log = log;
     function parseSettings() {
         const settings = new settings_2.Settings();
-        if ($("#optColorSpaceRGB").prop("checked")) {
-            settings.kMeansClusteringColorSpace = settings_2.ClusteringColorSpace.RGB;
-        }
-        else if ($("#optColorSpaceHSL").prop("checked")) {
-            settings.kMeansClusteringColorSpace = settings_2.ClusteringColorSpace.HSL;
-        }
-        else if ($("#optColorSpaceRGB").prop("checked")) {
-            settings.kMeansClusteringColorSpace = settings_2.ClusteringColorSpace.LAB;
-        }
-        if ($("#optFacetRemovalLargestToSmallest").prop("checked")) {
-            settings.removeFacetsFromLargeToSmall = true;
-        }
-        else {
-            settings.removeFacetsFromLargeToSmall = false;
-        }
-        settings.randomSeed = parseInt($("#txtRandomSeed").val() + "");
-        settings.kMeansNrOfClusters = parseInt($("#txtNrOfClusters").val() + "");
-        settings.kMeansMinDeltaDifference = parseFloat($("#txtClusterPrecision").val() + "");
-        settings.removeFacetsSmallerThanNrOfPoints = parseInt($("#txtRemoveFacetsSmallerThan").val() + "");
-        settings.maximumNumberOfFacets = parseInt($("#txtMaximumNumberOfFacets").val() + "");
-        settings.nrOfTimesToHalveBorderSegments = parseInt($("#txtNrOfTimesToHalveBorderSegments").val() + "");
-        settings.narrowPixelStripCleanupRuns = parseInt($("#txtNarrowPixelStripCleanupRuns").val() + "");
-        settings.resizeImageIfTooLarge = $("#chkResizeImage").prop("checked");
-        settings.resizeImageWidth = parseInt($("#txtResizeWidth").val() + "");
-        settings.resizeImageHeight = parseInt($("#txtResizeHeight").val() + "");
-        const restrictedColorLines = ($("#txtKMeansColorRestrictions").val() + "").split("\n");
-        for (const line of restrictedColorLines) {
-            const tline = line.trim();
-            if (tline.indexOf("//") === 0) {
-                // comment, skip
-            }
-            else {
-                const rgbparts = tline.split(",");
-                if (rgbparts.length === 3) {
-                    let red = parseInt(rgbparts[0]);
-                    let green = parseInt(rgbparts[1]);
-                    let blue = parseInt(rgbparts[2]);
-                    if (red < 0)
-                        red = 0;
-                    if (red > 255)
-                        red = 255;
-                    if (green < 0)
-                        green = 0;
-                    if (green > 255)
-                        green = 255;
-                    if (blue < 0)
-                        blue = 0;
-                    if (blue > 255)
-                        blue = 255;
-                    if (!isNaN(red) && !isNaN(green) && !isNaN(blue)) {
-                        settings.kMeansColorRestrictions.push([red, green, blue]);
-                    }
-                }
-            }
-        }
-        return settings;
-    }
+        // if ($("#optColorSpaceRGB").prop("checked")) {
+        //     settings.kMeansClusteringColorSpace = settings_2.ClusteringColorSpace.RGB;
+        // }
+        // else if ($("#optColorSpaceHSL").prop("checked")) {
+        //     settings.kMeansClusteringColorSpace = settings_2.ClusteringColorSpace.HSL;
+        // }
+        // else if ($("#optColorSpaceRGB").prop("checked")) {
+        //     settings.kMeansClusteringColorSpace = settings_2.ClusteringColorSpace.LAB;
+        // }
+        
+        // if ($("#optFacetRemovalLargestToSmallest").prop("checked")) {
+        //     settings.removeFacetsFromLargeToSmall = true;
+        // }
+        // else {
+        //     settings.removeFacetsFromLargeToSmall = false;
+        // }
+
+        // settings.randomSeed = parseInt($("#txtRandomSeed").val() + "");
+        // settings.kMeansNrOfClusters = parseInt($("#txtNrOfClusters").val() + "");
+        // settings.kMeansMinDeltaDifference = parseFloat($("#txtClusterPrecision").val() + "");
+        // settings.removeFacetsSmallerThanNrOfPoints = parseInt($("#txtRemoveFacetsSmallerThan").val() + "");
+        // settings.maximumNumberOfFacets = parseInt($("#txtMaximumNumberOfFacets").val() + "");
+        // settings.nrOfTimesToHalveBorderSegments = parseInt($("#txtNrOfTimesToHalveBorderSegments").val() + "");
+        // settings.narrowPixelStripCleanupRuns = parseInt($("#txtNarrowPixelStripCleanupRuns").val() + "");
+        // settings.resizeImageIfTooLarge = $("#chkResizeImage").prop("checked");
+        // settings.resizeImageWidth = parseInt($("#txtResizeWidth").val() + "");
+        // settings.resizeImageHeight = parseInt($("#txtResizeHeight").val() + "");
+        // const restrictedColorLines = ($("#txtKMeansColorRestrictions").val() + "").split("\n");
+        settings.kMeansClusteringColorSpace = settings_2.ClusteringColorSpace.RGB;
+        settings.removeFacetsFromLargeToSmall = true;
+        settings.randomSeed = 0;
+        settings.kMeansNrOfClusters = 16;
+        settings.kMeansMinDeltaDifference = 1;
+        settings.removeFacetsSmallerThanNrOfPoints = 50;
+        settings.maximumNumberOfFacets = 100000;
+        settings.nrOfTimesToHalveBorderSegments = 2;
+        settings.narrowPixelStripCleanupRuns = 3;
+        settings.resizeImageIfTooLarge = true;
+        settings.resizeImageWidth = 1024;
+        settings.resizeImageHeight = 1024;
+    //     const restrictedColorLines = ($("#txtKMeansColorRestrictions").val() + "").split("\n");
+    //     for (const line of restrictedColorLines) {
+    //         const tline = line.trim();
+    //         if (tline.indexOf("//") === 0) {
+    //             // comment, skip
+    //         }
+    //         else {
+    //             const rgbparts = tline.split(",");
+    //             if (rgbparts.length === 3) {
+    //                 let red = parseInt(rgbparts[0]);
+    //                 let green = parseInt(rgbparts[1]);
+    //                 let blue = parseInt(rgbparts[2]);
+    //                 if (red < 0)
+    //                     red = 0;
+    //                 if (red > 255)
+    //                     red = 255;
+    //                 if (green < 0)
+    //                     green = 0;
+    //                 if (green > 255)
+    //                     green = 255;
+    //                 if (blue < 0)
+    //                     blue = 0;
+    //                 if (blue > 255)
+    //                     blue = 255;
+    //                 if (!isNaN(red) && !isNaN(green) && !isNaN(blue)) {
+    //                     settings.kMeansColorRestrictions.push([red, green, blue]);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return settings;
+    // }
     exports.parseSettings = parseSettings;
     function process() {
         return __awaiter(this, void 0, void 0, function* () {
